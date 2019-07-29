@@ -5,3 +5,5 @@ const PostSchema = mongoose.Schema({
     description: String,
     date: Date.now
 });
+
+module.exports = mongoose.model("Post");
