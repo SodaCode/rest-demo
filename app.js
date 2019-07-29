@@ -5,13 +5,14 @@ require("dotenv/config");
 const app = express();
 
 
+//Imported Routes
+const showRoutes = require("./routes/show");
+
+app.use("/show", showRoutes);
+
 //Routes
 app.get("/", (req, res) => {
     res.send("We are at the home page");
-});
-
-app.get("/show", (req, res) => {
-    res.send("We are at the show page");
 });
 
 //DB
