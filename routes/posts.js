@@ -2,25 +2,42 @@ const express = require("express");
 const router = express.Router();
 const Post = require("../models/Post");
 
-router.get('/', (req, res) => {
-    res.send("We are on posts");
+
+
+
+
+//gets all the post 
+router.get('/', async (req, res) => {
+    try {
+        const posts = await Post.find();
+        res.json(posts);
+    } catch (err) {
+        res.json({
+            message: err
+        });
+    }
 });
 
-router.post("/", (req, res) => {
+//submits a post
+router.post("/", async (req, res) => {
     const post = new Post({
         title: req.body.title,
         description: req.body.description
     });
 
-    post.save()
-        .then(data => {
-            res.json(data);
-        })
-        .catch(err => {
-            res.json({
-                message: err
-            });
+    try {
+        const savePost = await post.save();
+        res.json(savePost);
+    } catch (err) {
+        res.json({
+            message: err
         });
+    }
 });
+
+//get back a specific post
+router.get("/:postId", (req, res) => {
+    console.log(req.perams.postId);
+})
 
 module.exports = router;
