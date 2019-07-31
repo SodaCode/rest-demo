@@ -6,9 +6,9 @@ const app = express();
 
 
 //Imported Routes
-const showRoutes = require("./routes/show");
+const postRoute = require("./routes/posts");
 
-app.use("/show", showRoutes);
+app.use("/posts", postRoute);
 
 //Routes
 app.get("/", (req, res) => {
